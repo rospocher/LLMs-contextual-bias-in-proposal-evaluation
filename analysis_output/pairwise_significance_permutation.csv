@@ -1,0 +1,25 @@
+question_id,left_label,right_label,pair_label,n_pairs,observed_mean_diff,p_value_permutation,p_value_permutation_holm,stars_permutation,stars_permutation_holm
+q01,Male (name),Female (name),Male (name) - Female (name),960,-0.010078124999999999,9.999000099990002e-05,0.0023997600239976003,***,**
+q01,Low-tier (inst.),Top-tier (inst.),Low-tier (inst.) - Top-tier (inst.),960,-0.012942708333333332,9.999000099990002e-05,0.0023997600239976003,***,**
+q01,Lower (profile),Higher (profile),Lower (profile) - Higher (profile),960,-0.06549479166666666,9.999000099990002e-05,0.0023997600239976003,***,**
+q01,Yes (AI),No (AI),Yes (AI) - No (AI),960,-0.029791666666666668,9.999000099990002e-05,0.0023997600239976003,***,**
+q02,Male (name),Female (name),Male (name) - Female (name),960,-0.006666666666666666,9.999000099990002e-05,0.0023997600239976003,***,**
+q02,Low-tier (inst.),Top-tier (inst.),Low-tier (inst.) - Top-tier (inst.),960,-0.01171875,9.999000099990002e-05,0.0023997600239976003,***,**
+q02,Lower (profile),Higher (profile),Lower (profile) - Higher (profile),960,-0.0621875,9.999000099990002e-05,0.0023997600239976003,***,**
+q02,Yes (AI),No (AI),Yes (AI) - No (AI),960,-0.0121875,0.0005999400059994001,0.0023997600239976003,***,**
+q03,Male (name),Female (name),Male (name) - Female (name),960,-0.013776041666666664,9.999000099990002e-05,0.0023997600239976003,***,**
+q03,Low-tier (inst.),Top-tier (inst.),Low-tier (inst.) - Top-tier (inst.),960,-0.042317708333333336,9.999000099990002e-05,0.0023997600239976003,***,**
+q03,Lower (profile),Higher (profile),Lower (profile) - Higher (profile),960,-0.168359375,9.999000099990002e-05,0.0023997600239976003,***,**
+q03,Yes (AI),No (AI),Yes (AI) - No (AI),960,-0.049791666666666665,9.999000099990002e-05,0.0023997600239976003,***,**
+q04,Male (name),Female (name),Male (name) - Female (name),960,-0.013567708333333333,9.999000099990002e-05,0.0023997600239976003,***,**
+q04,Low-tier (inst.),Top-tier (inst.),Low-tier (inst.) - Top-tier (inst.),960,-0.029713541666666666,9.999000099990002e-05,0.0023997600239976003,***,**
+q04,Lower (profile),Higher (profile),Lower (profile) - Higher (profile),960,-0.11434895833333333,9.999000099990002e-05,0.0023997600239976003,***,**
+q04,Yes (AI),No (AI),Yes (AI) - No (AI),960,-0.031145833333333334,9.999000099990002e-05,0.0023997600239976003,***,**
+q05,Male (name),Female (name),Male (name) - Female (name),960,-0.018723958333333336,9.999000099990002e-05,0.0023997600239976003,***,**
+q05,Low-tier (inst.),Top-tier (inst.),Low-tier (inst.) - Top-tier (inst.),960,-0.06966145833333333,9.999000099990002e-05,0.0023997600239976003,***,**
+q05,Lower (profile),Higher (profile),Lower (profile) - Higher (profile),960,-0.23888020833333332,9.999000099990002e-05,0.0023997600239976003,***,**
+q05,Yes (AI),No (AI),Yes (AI) - No (AI),960,-0.06645833333333333,9.999000099990002e-05,0.0023997600239976003,***,**
+q06,Male (name),Female (name),Male (name) - Female (name),960,-0.017734375,9.999000099990002e-05,0.0023997600239976003,***,**
+q06,Low-tier (inst.),Top-tier (inst.),Low-tier (inst.) - Top-tier (inst.),960,-0.042994791666666664,9.999000099990002e-05,0.0023997600239976003,***,**
+q06,Lower (profile),Higher (profile),Lower (profile) - Higher (profile),960,-0.168984375,9.999000099990002e-05,0.0023997600239976003,***,**
+q06,Yes (AI),No (AI),Yes (AI) - No (AI),960,-0.062083333333333345,9.999000099990002e-05,0.0023997600239976003,***,**

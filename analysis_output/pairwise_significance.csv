@@ -1,0 +1,25 @@
+question_id,left_label,right_label,pair_label,n_pairs,t_statistic,p_value,p_value_holm,stars,stars_holm
+q01,Male (name),Female (name),Male (name) - Female (name),960,-5.812089208708587,8.393294861459638e-09,4.282505264888091e-08,***,***
+q01,Low-tier (inst.),Top-tier (inst.),Low-tier (inst.) - Top-tier (inst.),960,-6.972397649224486,5.795251663961332e-12,4.878226125475916e-11,***,***
+q01,Lower (profile),Higher (profile),Lower (profile) - Higher (profile),960,-15.645842863516014,2.5856699365017227e-49,4.654205885703101e-48,***,***
+q01,Yes (AI),No (AI),Yes (AI) - No (AI),960,-7.453556103103862,2.0276110075279216e-13,2.2303721082807136e-12,***,***
+q02,Male (name),Female (name),Male (name) - Female (name),960,-3.8530752307751057,0.00012440078517228197,0.00024880157034456394,***,***
+q02,Low-tier (inst.),Top-tier (inst.),Low-tier (inst.) - Top-tier (inst.),960,-6.2305022880028975,6.951211360256154e-10,4.865847952179308e-09,***,***
+q02,Lower (profile),Higher (profile),Lower (profile) - Higher (profile),960,-15.801878516187214,3.6479555767813714e-50,6.931115595884605e-49,***,***
+q02,Yes (AI),No (AI),Yes (AI) - No (AI),960,-3.4235162123680887,0.0006443230794824779,0.0006443230794824779,***,***
+q03,Male (name),Female (name),Male (name) - Female (name),960,-4.777944670723208,2.0479370993373024e-06,6.143811298011907e-06,***,***
+q03,Low-tier (inst.),Top-tier (inst.),Low-tier (inst.) - Top-tier (inst.),960,-12.83270400636084,6.675975208810547e-35,1.0681560334096876e-33,***,***
+q03,Lower (profile),Higher (profile),Lower (profile) - Higher (profile),960,-28.34941817732817,6.631931840089731e-129,1.4590250048197409e-127,***,***
+q03,Yes (AI),No (AI),Yes (AI) - No (AI),960,-8.99657801525987,1.221834705281753e-18,1.4662016463381037e-17,***,***
+q04,Male (name),Female (name),Male (name) - Female (name),960,-5.840110253163616,7.137508774813485e-09,4.282505264888091e-08,***,***
+q04,Low-tier (inst.),Top-tier (inst.),Low-tier (inst.) - Top-tier (inst.),960,-11.195050594605279,1.987638891613391e-27,2.782694448258747e-26,***,***
+q04,Lower (profile),Higher (profile),Lower (profile) - Higher (profile),960,-24.1412421392815,5.547094013582257e-101,1.1648897428522738e-99,***,***
+q04,Yes (AI),No (AI),Yes (AI) - No (AI),960,-6.98227711062831,5.420251250528796e-12,4.878226125475916e-11,***,***
+q05,Male (name),Female (name),Male (name) - Female (name),960,-5.786998426566596,9.698507684670712e-09,4.282505264888091e-08,***,***
+q05,Low-tier (inst.),Top-tier (inst.),Low-tier (inst.) - Top-tier (inst.),960,-15.962690161535587,4.7906096679832174e-51,9.581219335966435e-50,***,***
+q05,Lower (profile),Higher (profile),Lower (profile) - Higher (profile),960,-30.731071132777547,6.458648258449443e-145,1.485489099443372e-143,***,***
+q05,Yes (AI),No (AI),Yes (AI) - No (AI),960,-9.345188681135971,6.247688475899215e-20,8.121995018668979e-19,***,***
+q06,Male (name),Female (name),Male (name) - Female (name),960,-7.065595734760806,3.0731646060912147e-12,3.0731646060912146e-11,***,***
+q06,Low-tier (inst.),Top-tier (inst.),Low-tier (inst.) - Top-tier (inst.),960,-13.980409373583024,1.4696398783201574e-40,2.4983877931442677e-39,***,***
+q06,Lower (profile),Higher (profile),Lower (profile) - Higher (profile),960,-32.0187074078175,1.3929482037923177e-153,3.3430756891015626e-152,***,***
+q06,Yes (AI),No (AI),Yes (AI) - No (AI),960,-12.480864713299662,3.103416261585353e-33,4.6551243923780293e-32,***,***

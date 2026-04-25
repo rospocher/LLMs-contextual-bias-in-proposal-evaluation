@@ -1,0 +1,5 @@
+effect,effect_label,flip_label,n_prompts,pooled_mean_rank_delta,rank_delta_sign_consistency,rank_delta_sd_across_prompts,rank_delta_min,rank_delta_max,rank_delta_mean_abs_dev_from_pooled
+ai_flag,AI usage: No → Yes,AI_N -> AI_Y,3,3.4927083333333333,3/3,0.3880833981998373,3.159375,3.91875,0.28402777777777793
+pi_inst_tier,Institute: Top-tier → Low-tier,TOP_I -> LOW_I,3,2.1283854166666667,3/3,1.0294771495751598,1.46171875,3.3140625,0.7904513888888888
+pi_metric_level,Profile: Higher → Lower,HIGH_B -> LOW_B,3,7.901822916666666,3/3,1.679034453961903,6.053125,9.33203125,1.232465277777778
+pi_name_group,Name: Female → Male,F_N -> M_N,3,0.85859375,3/3,0.5498201943306101,0.34453125,1.43828125,0.38645833333333335

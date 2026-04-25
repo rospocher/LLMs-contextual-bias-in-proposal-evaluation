@@ -1,0 +1,161 @@
+effect,effect_label,flip_label,rank_base,rank_delta_ci_low,rank_delta_ci_high
+ai_flag,AI usage: No → Yes,AI_N -> AI_Y,1,3.25,12.666666666666666
+ai_flag,AI usage: No → Yes,AI_N -> AI_Y,2,8.142063492063492,13.572767857142855
+ai_flag,AI usage: No → Yes,AI_N -> AI_Y,3,3.3739583333333334,11.072767857142855
+ai_flag,AI usage: No → Yes,AI_N -> AI_Y,4,6.350367647058824,15.076923076923077
+ai_flag,AI usage: No → Yes,AI_N -> AI_Y,5,4.24875,13.25
+ai_flag,AI usage: No → Yes,AI_N -> AI_Y,6,3.4369791666666667,10.461538461538462
+ai_flag,AI usage: No → Yes,AI_N -> AI_Y,7,8.697884615384615,15.933333333333334
+ai_flag,AI usage: No → Yes,AI_N -> AI_Y,8,2.1525,7.375240384615385
+ai_flag,AI usage: No → Yes,AI_N -> AI_Y,9,2.0573529411764704,7.636525974025974
+ai_flag,AI usage: No → Yes,AI_N -> AI_Y,10,3.665909090909091,7.700681818181818
+ai_flag,AI usage: No → Yes,AI_N -> AI_Y,11,3.8664285714285715,9.25
+ai_flag,AI usage: No → Yes,AI_N -> AI_Y,12,2.6499264705882353,8.200555555555555
+ai_flag,AI usage: No → Yes,AI_N -> AI_Y,13,3.6,10.701249999999998
+ai_flag,AI usage: No → Yes,AI_N -> AI_Y,14,4.0,10.20181818181818
+ai_flag,AI usage: No → Yes,AI_N -> AI_Y,15,3.9984375,10.153846153846153
+ai_flag,AI usage: No → Yes,AI_N -> AI_Y,16,2.6660714285714286,8.266818181818183
+ai_flag,AI usage: No → Yes,AI_N -> AI_Y,17,2.1859375,7.5
+ai_flag,AI usage: No → Yes,AI_N -> AI_Y,18,2.3828947368421054,7.2
+ai_flag,AI usage: No → Yes,AI_N -> AI_Y,19,3.4665384615384616,8.572767857142855
+ai_flag,AI usage: No → Yes,AI_N -> AI_Y,20,0.5294117647058824,4.334090909090908
+ai_flag,AI usage: No → Yes,AI_N -> AI_Y,21,-0.5,3.6003846153846153
+ai_flag,AI usage: No → Yes,AI_N -> AI_Y,22,-1.4177884615384615,2.750480769230769
+ai_flag,AI usage: No → Yes,AI_N -> AI_Y,23,-1.833653846153846,2.8003124999999995
+ai_flag,AI usage: No → Yes,AI_N -> AI_Y,24,-0.21428571428571427,4.868214285714284
+ai_flag,AI usage: No → Yes,AI_N -> AI_Y,25,-2.5011363636363635,0.9375919117647058
+ai_flag,AI usage: No → Yes,AI_N -> AI_Y,26,-0.3573051948051948,3.4375
+ai_flag,AI usage: No → Yes,AI_N -> AI_Y,27,1.0,4.287499999999998
+ai_flag,AI usage: No → Yes,AI_N -> AI_Y,28,0.09916666666666672,2.7142857142857144
+ai_flag,AI usage: No → Yes,AI_N -> AI_Y,29,1.1241477272727274,2.750367647058823
+ai_flag,AI usage: No → Yes,AI_N -> AI_Y,30,0.76875,2.5294117647058822
+ai_flag,AI usage: No → Yes,AI_N -> AI_Y,31,-0.385,1.6371212121212115
+ai_flag,AI usage: No → Yes,AI_N -> AI_Y,32,-1.9285714285714286,1.0
+ai_flag,AI usage: No → Yes,AI_N -> AI_Y,33,-2.6925000000000003,1.077777777777777
+ai_flag,AI usage: No → Yes,AI_N -> AI_Y,34,-1.6666666666666667,1.3571428571428572
+ai_flag,AI usage: No → Yes,AI_N -> AI_Y,35,-2.066666666666667,1.3578296703296697
+ai_flag,AI usage: No → Yes,AI_N -> AI_Y,36,-3.547202797202797,-0.29944444444444496
+ai_flag,AI usage: No → Yes,AI_N -> AI_Y,37,-2.2860714285714283,0.4
+ai_flag,AI usage: No → Yes,AI_N -> AI_Y,38,-2.0,0.23076923076923078
+ai_flag,AI usage: No → Yes,AI_N -> AI_Y,39,-1.7517045454545455,0.0
+ai_flag,AI usage: No → Yes,AI_N -> AI_Y,40,-1.9285714285714286,-0.08333333333333333
+pi_inst_tier,Institute: Top-tier → Low-tier,TOP_I -> LOW_I,1,6.571366995073891,8.50984952120383
+pi_inst_tier,Institute: Top-tier → Low-tier,TOP_I -> LOW_I,2,5.266632653061224,8.568477272727273
+pi_inst_tier,Institute: Top-tier → Low-tier,TOP_I -> LOW_I,3,6.820757749712974,10.141493268053855
+pi_inst_tier,Institute: Top-tier → Low-tier,TOP_I -> LOW_I,4,4.774005376344086,8.0
+pi_inst_tier,Institute: Top-tier → Low-tier,TOP_I -> LOW_I,5,3.0752798209146146,6.673181573275862
+pi_inst_tier,Institute: Top-tier → Low-tier,TOP_I -> LOW_I,6,4.490689935064935,8.101694915254237
+pi_inst_tier,Institute: Top-tier → Low-tier,TOP_I -> LOW_I,7,4.592483660130719,7.372934322033898
+pi_inst_tier,Institute: Top-tier → Low-tier,TOP_I -> LOW_I,8,3.7611456605859592,6.410648148148148
+pi_inst_tier,Institute: Top-tier → Low-tier,TOP_I -> LOW_I,9,4.437411556603774,7.9053571428571425
+pi_inst_tier,Institute: Top-tier → Low-tier,TOP_I -> LOW_I,10,4.048313782991203,6.825068058076225
+pi_inst_tier,Institute: Top-tier → Low-tier,TOP_I -> LOW_I,11,5.178595119639896,7.8126875
+pi_inst_tier,Institute: Top-tier → Low-tier,TOP_I -> LOW_I,12,4.113808322824717,6.69003674392312
+pi_inst_tier,Institute: Top-tier → Low-tier,TOP_I -> LOW_I,13,3.966666666666667,6.809656084656084
+pi_inst_tier,Institute: Top-tier → Low-tier,TOP_I -> LOW_I,14,1.9089126559714795,4.339258474576271
+pi_inst_tier,Institute: Top-tier → Low-tier,TOP_I -> LOW_I,15,3.5786978221415606,6.423783741368487
+pi_inst_tier,Institute: Top-tier → Low-tier,TOP_I -> LOW_I,16,2.5996551724137933,5.315412186379928
+pi_inst_tier,Institute: Top-tier → Low-tier,TOP_I -> LOW_I,17,2.097931985294118,4.680338709677419
+pi_inst_tier,Institute: Top-tier → Low-tier,TOP_I -> LOW_I,18,0.7636651583710408,3.4171874999999994
+pi_inst_tier,Institute: Top-tier → Low-tier,TOP_I -> LOW_I,19,0.4381578947368421,2.9371148459383747
+pi_inst_tier,Institute: Top-tier → Low-tier,TOP_I -> LOW_I,20,1.7406184486373166,4.066785714285714
+pi_inst_tier,Institute: Top-tier → Low-tier,TOP_I -> LOW_I,21,1.0143382352941177,3.113736631016043
+pi_inst_tier,Institute: Top-tier → Low-tier,TOP_I -> LOW_I,22,-0.32803291536050155,1.8656249999999999
+pi_inst_tier,Institute: Top-tier → Low-tier,TOP_I -> LOW_I,23,-0.8117273910214704,1.4232758620689654
+pi_inst_tier,Institute: Top-tier → Low-tier,TOP_I -> LOW_I,24,-0.6561475409836065,2.228479532163742
+pi_inst_tier,Institute: Top-tier → Low-tier,TOP_I -> LOW_I,25,1.3816924227318046,3.3051189174412245
+pi_inst_tier,Institute: Top-tier → Low-tier,TOP_I -> LOW_I,26,-1.5669909591194968,0.7391304347826086
+pi_inst_tier,Institute: Top-tier → Low-tier,TOP_I -> LOW_I,27,-0.5511356262167424,1.1618872549019608
+pi_inst_tier,Institute: Top-tier → Low-tier,TOP_I -> LOW_I,28,-1.8079545454545454,0.648172514619883
+pi_inst_tier,Institute: Top-tier → Low-tier,TOP_I -> LOW_I,29,-2.842131062951496,-0.5383333333333334
+pi_inst_tier,Institute: Top-tier → Low-tier,TOP_I -> LOW_I,30,-0.5556497175141243,1.269696969696969
+pi_inst_tier,Institute: Top-tier → Low-tier,TOP_I -> LOW_I,31,-1.3962316176470588,0.6668032786885244
+pi_inst_tier,Institute: Top-tier → Low-tier,TOP_I -> LOW_I,32,-1.8666981132075473,0.4914473684210524
+pi_inst_tier,Institute: Top-tier → Low-tier,TOP_I -> LOW_I,33,-1.6305072463768115,0.5363181504485852
+pi_inst_tier,Institute: Top-tier → Low-tier,TOP_I -> LOW_I,34,-2.9131765749778173,-0.9180644132653064
+pi_inst_tier,Institute: Top-tier → Low-tier,TOP_I -> LOW_I,35,-3.3754464285714287,-0.9189119513484932
+pi_inst_tier,Institute: Top-tier → Low-tier,TOP_I -> LOW_I,36,-4.492488965952081,-1.6860531309297915
+pi_inst_tier,Institute: Top-tier → Low-tier,TOP_I -> LOW_I,37,-3.8648232323232325,-1.7810849471830987
+pi_inst_tier,Institute: Top-tier → Low-tier,TOP_I -> LOW_I,38,-4.841358784893267,-2.403203661327231
+pi_inst_tier,Institute: Top-tier → Low-tier,TOP_I -> LOW_I,39,-2.8681562396557427,-1.4906899350649354
+pi_inst_tier,Institute: Top-tier → Low-tier,TOP_I -> LOW_I,40,-4.500320512820513,-2.3428383458646618
+pi_metric_level,Profile: Higher → Lower,HIGH_B -> LOW_B,1,14.861350574712644,20.444999999999997
+pi_metric_level,Profile: Higher → Lower,HIGH_B -> LOW_B,2,12.349171842650104,18.755905340859748
+pi_metric_level,Profile: Higher → Lower,HIGH_B -> LOW_B,3,13.624375,19.175065217391303
+pi_metric_level,Profile: Higher → Lower,HIGH_B -> LOW_B,4,12.208903757076685,17.1055625
+pi_metric_level,Profile: Higher → Lower,HIGH_B -> LOW_B,5,10.038795918367347,15.750117924528302
+pi_metric_level,Profile: Higher → Lower,HIGH_B -> LOW_B,6,13.622943086916177,18.055833333333336
+pi_metric_level,Profile: Higher → Lower,HIGH_B -> LOW_B,7,12.475758620689655,19.121547202797203
+pi_metric_level,Profile: Higher → Lower,HIGH_B -> LOW_B,8,11.17440476190476,15.968032786885246
+pi_metric_level,Profile: Higher → Lower,HIGH_B -> LOW_B,9,11.64472850678733,16.46984818317571
+pi_metric_level,Profile: Higher → Lower,HIGH_B -> LOW_B,10,12.387903663500678,16.528427672955974
+pi_metric_level,Profile: Higher → Lower,HIGH_B -> LOW_B,11,10.812015086206896,16.588115942028985
+pi_metric_level,Profile: Higher → Lower,HIGH_B -> LOW_B,12,7.962035672169811,13.5569209039548
+pi_metric_level,Profile: Higher → Lower,HIGH_B -> LOW_B,13,9.874609375,14.083333333333334
+pi_metric_level,Profile: Higher → Lower,HIGH_B -> LOW_B,14,10.91304347826087,13.787583485124468
+pi_metric_level,Profile: Higher → Lower,HIGH_B -> LOW_B,15,9.65053943452381,13.727450284090908
+pi_metric_level,Profile: Higher → Lower,HIGH_B -> LOW_B,16,10.18812893081761,13.72157137145142
+pi_metric_level,Profile: Higher → Lower,HIGH_B -> LOW_B,17,9.0,12.240363636363636
+pi_metric_level,Profile: Higher → Lower,HIGH_B -> LOW_B,18,5.809193121693122,9.695065095003518
+pi_metric_level,Profile: Higher → Lower,HIGH_B -> LOW_B,19,6.673603678929766,9.762857142857143
+pi_metric_level,Profile: Higher → Lower,HIGH_B -> LOW_B,20,6.925789022298456,10.83372641509434
+pi_metric_level,Profile: Higher → Lower,HIGH_B -> LOW_B,21,5.92026055705301,9.0379035639413
+pi_metric_level,Profile: Higher → Lower,HIGH_B -> LOW_B,22,5.05082627118644,8.250201612903226
+pi_metric_level,Profile: Higher → Lower,HIGH_B -> LOW_B,23,5.262828947368422,7.839872198879552
+pi_metric_level,Profile: Higher → Lower,HIGH_B -> LOW_B,24,4.5592734092803555,7.69674512987013
+pi_metric_level,Profile: Higher → Lower,HIGH_B -> LOW_B,25,5.014899461028192,7.384905660377359
+pi_metric_level,Profile: Higher → Lower,HIGH_B -> LOW_B,26,3.779613935969868,6.925514668039114
+pi_metric_level,Profile: Higher → Lower,HIGH_B -> LOW_B,27,2.4666071428571428,5.183208626760563
+pi_metric_level,Profile: Higher → Lower,HIGH_B -> LOW_B,28,2.245508166969147,4.051794670846395
+pi_metric_level,Profile: Higher → Lower,HIGH_B -> LOW_B,29,2.0208125000000003,4.518713450292397
+pi_metric_level,Profile: Higher → Lower,HIGH_B -> LOW_B,30,2.614795918367347,4.3977941176470585
+pi_metric_level,Profile: Higher → Lower,HIGH_B -> LOW_B,31,1.8869532531437945,3.5594234900931006
+pi_metric_level,Profile: Higher → Lower,HIGH_B -> LOW_B,32,0.7065318302387268,2.3750589622641507
+pi_metric_level,Profile: Higher → Lower,HIGH_B -> LOW_B,33,0.8643483343074226,2.554138922518159
+pi_metric_level,Profile: Higher → Lower,HIGH_B -> LOW_B,34,-0.2034187211093991,1.65
+pi_metric_level,Profile: Higher → Lower,HIGH_B -> LOW_B,35,0.09090909090909091,1.8477711864406776
+pi_metric_level,Profile: Higher → Lower,HIGH_B -> LOW_B,36,-0.5203333333333333,1.1455681818181818
+pi_metric_level,Profile: Higher → Lower,HIGH_B -> LOW_B,37,0.34746376811594204,1.078156001984127
+pi_metric_level,Profile: Higher → Lower,HIGH_B -> LOW_B,38,-1.065601092896175,0.29419713831478533
+pi_metric_level,Profile: Higher → Lower,HIGH_B -> LOW_B,39,-0.22586304470854554,0.21052631578947367
+pi_metric_level,Profile: Higher → Lower,HIGH_B -> LOW_B,40,-1.6454115684093438,-0.42023036988968204
+pi_name_group,Name: Female → Male,F_N -> M_N,1,3.9549425287356326,7.000403225806451
+pi_name_group,Name: Female → Male,F_N -> M_N,2,2.823529411764706,5.839303571428571
+pi_name_group,Name: Female → Male,F_N -> M_N,3,3.2082270408163267,5.981157345013477
+pi_name_group,Name: Female → Male,F_N -> M_N,4,2.9399728629579376,5.4528730703259
+pi_name_group,Name: Female → Male,F_N -> M_N,5,2.5299360795454544,5.351121656600518
+pi_name_group,Name: Female → Male,F_N -> M_N,6,1.7026302083333333,3.7784420289855065
+pi_name_group,Name: Female → Male,F_N -> M_N,7,2.4567333156779663,5.472946127946128
+pi_name_group,Name: Female → Male,F_N -> M_N,8,3.535112126245847,6.0421875
+pi_name_group,Name: Female → Male,F_N -> M_N,9,3.1329166666666666,6.088026315789473
+pi_name_group,Name: Female → Male,F_N -> M_N,10,3.3274154196486663,6.1820599613152805
+pi_name_group,Name: Female → Male,F_N -> M_N,11,1.9654702194357365,4.431383689839572
+pi_name_group,Name: Female → Male,F_N -> M_N,12,2.2573821339950375,5.020453514739229
+pi_name_group,Name: Female → Male,F_N -> M_N,13,2.5915146617409377,5.736096897985289
+pi_name_group,Name: Female → Male,F_N -> M_N,14,0.6306779661016949,3.0202485380116944
+pi_name_group,Name: Female → Male,F_N -> M_N,15,0.5929971590909091,3.254499002991027
+pi_name_group,Name: Female → Male,F_N -> M_N,16,1.6558159722222223,3.859799685781618
+pi_name_group,Name: Female → Male,F_N -> M_N,17,0.3683014354066986,2.6060730253353204
+pi_name_group,Name: Female → Male,F_N -> M_N,18,0.6343237704918032,3.031293103448275
+pi_name_group,Name: Female → Male,F_N -> M_N,19,0.6596538461538463,3.508788480635551
+pi_name_group,Name: Female → Male,F_N -> M_N,20,1.5242205078752813,4.306660692951016
+pi_name_group,Name: Female → Male,F_N -> M_N,21,-0.6251442307692308,1.679607142857142
+pi_name_group,Name: Female → Male,F_N -> M_N,22,-0.7661481332798072,1.6156249999999999
+pi_name_group,Name: Female → Male,F_N -> M_N,23,-1.9836317780580075,0.3804137931034479
+pi_name_group,Name: Female → Male,F_N -> M_N,24,-2.40406746031746,0.3668749999999998
+pi_name_group,Name: Female → Male,F_N -> M_N,25,-0.5818881118881118,0.960855614973262
+pi_name_group,Name: Female → Male,F_N -> M_N,26,-2.8705409356725147,-0.7230555555555556
+pi_name_group,Name: Female → Male,F_N -> M_N,27,-1.8309677419354837,0.30304383116883116
+pi_name_group,Name: Female → Male,F_N -> M_N,28,-2.1021213748657357,0.12526483050847434
+pi_name_group,Name: Female → Male,F_N -> M_N,29,-2.590224650880389,-0.5
+pi_name_group,Name: Female → Male,F_N -> M_N,30,-3.5244239631336405,-1.426179831097864
+pi_name_group,Name: Female → Male,F_N -> M_N,31,-3.0625504032258064,-0.615086206896552
+pi_name_group,Name: Female → Male,F_N -> M_N,32,-5.311145833333333,-2.0632936507936512
+pi_name_group,Name: Female → Male,F_N -> M_N,33,-3.978294143744454,-1.2577532541029997
+pi_name_group,Name: Female → Male,F_N -> M_N,34,-2.365946447507953,-0.3270274170274172
+pi_name_group,Name: Female → Male,F_N -> M_N,35,-3.018217468805704,-1.2241314976839937
+pi_name_group,Name: Female → Male,F_N -> M_N,36,-4.674086493987049,-2.1198688524590166
+pi_name_group,Name: Female → Male,F_N -> M_N,37,-5.531302083333333,-2.564292114695341
+pi_name_group,Name: Female → Male,F_N -> M_N,38,-3.830641285099924,-1.915100154083205
+pi_name_group,Name: Female → Male,F_N -> M_N,39,-3.6153846153846154,-1.6082509881422928
+pi_name_group,Name: Female → Male,F_N -> M_N,40,-4.42124060150376,-2.2126354877559216
