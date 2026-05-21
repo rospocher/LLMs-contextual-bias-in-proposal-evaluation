@@ -97,3 +97,7 @@ Processed analysis outputs, including pooled summaries, model- and prompt-specif
 - “Robustness” files summarize consistency across models or prompts.
 - “Pairwise” and “pair difference” files compare one contrast effect against another, rather than against the blind baseline alone.
 - The `rank_selection` folder translates score changes into ranking and top-`K` selection consequences.
+
+## License and Use
+
+Code in this repository is released under the MIT License. Derived analysis outputs, including tables, figures, and other result files produced for the paper, are released under Creative Commons Attribution 4.0 International (CC BY 4.0). This means the code may be reused, modified, and redistributed under the terms of the MIT License, while the released results may be shared and adapted with appropriate attribution. Any reuse of source materials obtained from external providers remains subject to the original terms and licenses of those sources.
