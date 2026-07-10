@@ -41,6 +41,10 @@ Processed analysis outputs, including pooled summaries, model- and prompt-specif
 - `pooled_question_effects.csv`: pooled question-level effect estimates across models and prompts
 - `text_level_effects.csv`: proposal-level effect estimates underlying the aggregate summaries
 
+#### Criterion-level and q06 consistency diagnostics
+- `question_group_effects_q01q04_vs_q05q06.csv`: grouped contextual effects separating project-focused criteria (`q01`-`q04`) from capacity/global criteria (`q05`-`q06`)
+- `q06_consistency_with_q01_q05.csv`: correlations between `q06` and the mean of `q01`-`q05`, both for raw scores and blind-referenced effects
+
 #### Model-level summaries
 - `model_level_effects_compact.csv`: compact effect estimates by model
 - `model_pair_difference_effects.csv`: paired contrast differences by model
@@ -56,6 +60,17 @@ Processed analysis outputs, including pooled summaries, model- and prompt-specif
 #### Pairwise significance analyses
 - `pairwise_significance.csv`: paired statistical comparisons between contrast effects
 - `pairwise_significance_permutation.csv`: permutation-based comparisons between contrast effects
+
+#### PI-cue interaction analysis
+- `pi_interactions_q06.csv`: two-way interaction models for `q06` in the 2x2x2 PI-cue design
+
+#### Repeated-run variability
+- `within_cell_run_variability.csv`: within-cell variability across the five repeated valid runs at temperature 0.0. Cells are defined by model, proposal, prompt template, condition, and question.
+
+#### Proposal-level q06 robustness
+- `proposal_level_q06_sign_consistency.csv`: proposal-level sign consistency for `q06` paired contrasts after averaging over models and prompt templates
+- `proposal_level_q06_bootstrap.csv`: proposal-level bootstrap intervals for `q06` paired contrasts
+- `proposal_level_q06_leave_one_out.csv`: leave-one-proposal-out robustness checks for `q06` paired contrasts
 
 #### Model-specific figures
 `per_model_question_dumbbell_plots/` contains question-level dumbbell plots computed separately for each model:
@@ -90,11 +105,15 @@ Processed analysis outputs, including pooled summaries, model- and prompt-specif
 - `summary_by_effect_k_and_model.csv`: model-specific top-`K` summaries
 - `summary_by_effect_k_and_prompt.csv`: prompt-specific top-`K` summaries
 
+## Generated proposal texts and source records
+
+The full generated Part B1-like proposal texts are not included in this public anonymous repository to avoid circulation outside the research context and possible confusion with the actual Part B1 proposals of funded projects. They will be made available upon request for research and reproducibility purposes. The source CORDIS records can be reconstructed from the identifiers and retrieval information described in the manuscript and accompanying materials.
+
 ## Notes
 
 - `q06` denotes the overall score question.
 - “Pooled” outputs aggregate across models and prompt templates.
-- “Robustness” files summarize consistency across models or prompts.
+- “Robustness” files summarize consistency across models, prompts, or proposal texts.
 - “Pairwise” and “pair difference” files compare one contrast effect against another, rather than against the blind baseline alone.
 - The `rank_selection` folder translates score changes into ranking and top-`K` selection consequences.
 
