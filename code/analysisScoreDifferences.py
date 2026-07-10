@@ -853,6 +853,407 @@ def compute_mixed_effects_q06(text_df: pd.DataFrame) -> pd.DataFrame:
     return out
 
 
+
+def compute_within_cell_run_variability(raw_df: pd.DataFrame) -> pd.DataFrame:
+    if raw_df.empty:
+        return pd.DataFrame()
+
+    df = add_numeric_scores(raw_df)
+
+    group_cols = [
+        "model",
+        "text_id",
+        PROMPT_COL,
+        "run_mode",
+        "condition_id",
+    ]
+    optional_cols = [
+        "pi_name_group",
+        "pi_inst_tier",
+        "pi_metric_level",
+        "ai_flag",
+        "condition_family",
+    ]
+    group_cols += [c for c in optional_cols if c in df.columns]
+
+    missing = [c for c in group_cols if c not in df.columns]
+    if missing:
+        raise ValueError(f"Missing columns for within-cell variability: {missing}")
+
+    cell_rows = []
+    for q in QUESTION_IDS:
+        tmp = (
+            df.groupby(group_cols, dropna=False)[q]
+            .agg(n_runs="count", run_mean="mean", run_sd="std")
+            .reset_index()
+        )
+        tmp["question_id"] = q
+        cell_rows.append(tmp)
+
+    cell_df = pd.concat(cell_rows, ignore_index=True)
+    cell_df["run_sd"] = pd.to_numeric(cell_df["run_sd"], errors="coerce").fillna(0.0)
+
+    summary = (
+        cell_df.groupby("question_id", dropna=False)
+        .agg(
+            n_cells=("run_sd", "size"),
+            mean_within_cell_sd=("run_sd", "mean"),
+            median_within_cell_sd=("run_sd", "median"),
+            p95_within_cell_sd=("run_sd", lambda s: float(np.percentile(s, 95))),
+            max_within_cell_sd=("run_sd", "max"),
+            pct_zero_sd=("run_sd", lambda s: float((s == 0).mean() * 100.0)),
+            mean_n_runs=("n_runs", "mean"),
+            min_n_runs=("n_runs", "min"),
+            max_n_runs=("n_runs", "max"),
+        )
+        .reset_index()
+    )
+    return summary
+
+
+def compute_question_group_effects(text_df: pd.DataFrame) -> pd.DataFrame:
+    if text_df.empty:
+        return pd.DataFrame()
+
+    collapsed = collapse_text_level_effects(text_df)
+    if collapsed.empty:
+        return pd.DataFrame()
+
+    group_specs = {
+        "project_focused_q01_q04": ["q01", "q02", "q03", "q04"],
+        "capacity_global_q05_q06": ["q05", "q06"],
+    }
+
+    rows = []
+    for group_name, questions in group_specs.items():
+        effect_cols = [f"effect_{q}" for q in questions]
+        missing = [c for c in effect_cols if c not in collapsed.columns]
+        if missing:
+            raise ValueError(f"Missing effect columns for question grouping: {missing}")
+
+        tmp = collapsed.copy()
+        tmp["group_effect"] = tmp[effect_cols].mean(axis=1)
+
+        for (contrast_label, contrast_group), sub in tmp.groupby(
+            ["contrast_label", "contrast_group"], dropna=False
+        ):
+            vals = pd.to_numeric(sub["group_effect"], errors="coerce").dropna()
+            rows.append({
+                "question_group": group_name,
+                "contrast_label": contrast_label,
+                "contrast_group": contrast_group,
+                "mean_effect": float(vals.mean()) if len(vals) else np.nan,
+                "sd": float(vals.std(ddof=1)) if len(vals) > 1 else np.nan,
+                "se": float(vals.std(ddof=1) / np.sqrt(len(vals))) if len(vals) > 1 else np.nan,
+                "ci95": float(1.96 * vals.std(ddof=1) / np.sqrt(len(vals))) if len(vals) > 1 else np.nan,
+                "n": int(len(vals)),
+                "n_texts": int(sub["text_id"].nunique()),
+                "n_models": int(sub["model"].nunique()),
+                "n_prompts": int(sub[PROMPT_COL].nunique()),
+            })
+
+    return pd.DataFrame(rows)
+
+
+def compute_q06_consistency(text_df: pd.DataFrame) -> pd.DataFrame:
+    if text_df.empty:
+        return pd.DataFrame()
+
+    collapsed = collapse_text_level_effects(text_df).copy()
+    if collapsed.empty:
+        return pd.DataFrame()
+
+    score_cols = ["q01", "q02", "q03", "q04", "q05"]
+    effect_cols = [f"effect_{q}" for q in score_cols]
+    required = score_cols + ["q06"] + effect_cols + ["effect_q06"]
+    missing = [c for c in required if c not in collapsed.columns]
+    if missing:
+        raise ValueError(f"Missing columns for q06 consistency analysis: {missing}")
+
+    collapsed["mean_q01_q05"] = collapsed[score_cols].mean(axis=1)
+    collapsed["mean_effect_q01_q05"] = collapsed[effect_cols].mean(axis=1)
+
+    rows = []
+    grouping_specs = {
+        "pooled": [],
+        "by_model": ["model"],
+        "by_prompt": [PROMPT_COL],
+        "by_contrast": ["contrast_label"],
+    }
+
+    for level, group_cols in grouping_specs.items():
+        grouped = collapsed.groupby(group_cols, dropna=False) if group_cols else [((), collapsed)]
+        for keys, sub in grouped:
+            if not isinstance(keys, tuple):
+                keys = (keys,)
+            row = {"level": level}
+            for col, val in zip(group_cols, keys):
+                row[col] = val
+
+            score_pair = sub[["q06", "mean_q01_q05"]].dropna()
+            effect_pair = sub[["effect_q06", "mean_effect_q01_q05"]].dropna()
+
+            row["n_score_cells"] = int(len(score_pair))
+            row["corr_q06_mean_q01_q05"] = (
+                float(score_pair["q06"].corr(score_pair["mean_q01_q05"]))
+                if len(score_pair) >= 2 else np.nan
+            )
+            row["n_effect_cells"] = int(len(effect_pair))
+            row["corr_effect_q06_mean_effect_q01_q05"] = (
+                float(effect_pair["effect_q06"].corr(effect_pair["mean_effect_q01_q05"]))
+                if len(effect_pair) >= 2 else np.nan
+            )
+            rows.append(row)
+
+    return pd.DataFrame(rows)
+
+
+def compute_pi_interactions_q06(text_df: pd.DataFrame) -> pd.DataFrame:
+    if text_df.empty:
+        return pd.DataFrame()
+
+    needed = {
+        "run_mode",
+        "condition_id",
+        "model",
+        "text_id",
+        PROMPT_COL,
+        "pi_name_group",
+        "pi_inst_tier",
+        "pi_metric_level",
+        "effect_q06",
+    }
+    missing = needed - set(text_df.columns)
+    if missing:
+        raise ValueError(f"Missing columns for PI interaction analysis: {sorted(missing)}")
+
+    pi_df = text_df[text_df["run_mode"] == "pi-only"].copy()
+    pi_df = pi_df.drop_duplicates(subset=["model", "text_id", PROMPT_COL, "condition_id"])
+    pi_df["effect_q06"] = pd.to_numeric(pi_df["effect_q06"], errors="coerce")
+    pi_df = pi_df.dropna(
+        subset=[
+            "effect_q06",
+            "pi_name_group",
+            "pi_inst_tier",
+            "pi_metric_level",
+            "model",
+            "text_id",
+            PROMPT_COL,
+        ]
+    )
+
+    if pi_df.empty:
+        return pd.DataFrame()
+
+    interaction_specs = [
+        ("name_x_profile", "C(pi_name_group) * C(pi_metric_level)"),
+        ("name_x_institution", "C(pi_name_group) * C(pi_inst_tier)"),
+        ("institution_x_profile", "C(pi_inst_tier) * C(pi_metric_level)"),
+        (
+            "full_two_way_model",
+            "C(pi_name_group) * C(pi_metric_level) + "
+            "C(pi_name_group) * C(pi_inst_tier) + "
+            "C(pi_inst_tier) * C(pi_metric_level)",
+        ),
+    ]
+
+    rows = []
+    for model_label, formula_rhs in interaction_specs:
+        formula = f"effect_q06 ~ {formula_rhs}"
+        try:
+            with warnings.catch_warnings():
+                warnings.simplefilter("ignore")
+                model = smf.mixedlm(
+                    formula,
+                    data=pi_df,
+                    groups=pi_df["text_id"],
+                    re_formula="1",
+                    vc_formula={
+                        "model": "0 + C(model)",
+                        "prompt": f"0 + C({PROMPT_COL})",
+                    },
+                )
+                result = model.fit(reml=False, method="lbfgs", disp=False)
+
+            conf = result.conf_int()
+            for term in result.params.index:
+                rows.append({
+                    "model_label": model_label,
+                    "term": term,
+                    "estimate": float(result.params.get(term, np.nan)),
+                    "se": float(result.bse.get(term, np.nan)),
+                    "z_value": float(result.tvalues.get(term, np.nan)),
+                    "p_value": float(result.pvalues.get(term, np.nan)),
+                    "ci_low": float(conf.loc[term, 0]) if term in conf.index else np.nan,
+                    "ci_high": float(conf.loc[term, 1]) if term in conf.index else np.nan,
+                    "n_obs": int(pi_df.shape[0]),
+                    "n_texts": int(pi_df["text_id"].nunique()),
+                    "n_models": int(pi_df["model"].nunique()),
+                    "n_prompts": int(pi_df[PROMPT_COL].nunique()),
+                    "converged": bool(getattr(result, "converged", True)),
+                })
+        except Exception as exc:
+            print(f"WARNING: PI interaction model failed for {model_label}: {exc}")
+
+    out = pd.DataFrame(rows)
+    if not out.empty:
+        out["p_value_holm"] = holm_adjust_pvalues(out["p_value"].to_numpy(dtype=float))
+    return out
+
+
+def build_proposal_level_q06_pair_differences(text_df: pd.DataFrame) -> pd.DataFrame:
+    if text_df.empty:
+        return pd.DataFrame()
+
+    collapsed = collapse_text_level_effects(text_df).copy()
+    if collapsed.empty:
+        return pd.DataFrame()
+
+    proposal_level = (
+        collapsed.groupby(["text_id", "contrast_label"], dropna=False)["effect_q06"]
+        .mean()
+        .reset_index()
+    )
+    proposal_level["question_id"] = "q06"
+
+    pair_df = build_paired_difference_table(
+        df=proposal_level,
+        value_col="effect_q06",
+        unit_cols=["text_id"],
+    )
+    return pair_df
+
+
+def compute_proposal_level_q06_robustness(
+    text_df: pd.DataFrame,
+    n_bootstrap: int = 10000,
+    seed: int = 0,
+) -> Tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
+    pair_df = build_proposal_level_q06_pair_differences(text_df)
+    if pair_df.empty:
+        return pd.DataFrame(), pd.DataFrame(), pd.DataFrame()
+
+    rng = np.random.default_rng(seed)
+    sign_rows = []
+    loo_rows = []
+    boot_rows = []
+
+    for pair_name, sub in pair_df.groupby("pair_label", dropna=False):
+        vals_df = sub[["text_id", "pair_mean_diff"]].dropna().copy()
+        vals = pd.to_numeric(vals_df["pair_mean_diff"], errors="coerce").to_numpy(dtype=float)
+        text_ids = vals_df["text_id"].to_numpy()
+        n = len(vals)
+        if n == 0:
+            continue
+
+        mean_diff = float(vals.mean())
+        n_negative = int((vals < 0).sum())
+        n_positive = int((vals > 0).sum())
+        n_zero = int((vals == 0).sum())
+
+        sign_rows.append({
+            "pair_label": pair_name,
+            "n_proposals": int(n),
+            "mean_diff": mean_diff,
+            "n_negative": n_negative,
+            "n_positive": n_positive,
+            "n_zero": n_zero,
+            "pct_negative": float(n_negative / n * 100.0),
+        })
+
+        if n > 1:
+            for i in range(n):
+                keep = np.delete(vals, i)
+                loo_rows.append({
+                    "pair_label": pair_name,
+                    "left_out_text_id": text_ids[i],
+                    "loo_mean_diff": float(keep.mean()),
+                })
+        else:
+            loo_rows.append({
+                "pair_label": pair_name,
+                "left_out_text_id": text_ids[0],
+                "loo_mean_diff": np.nan,
+            })
+
+        boot_means = []
+        for _ in range(n_bootstrap):
+            idx = rng.integers(0, n, size=n)
+            boot_means.append(float(vals[idx].mean()))
+        boot_means = np.asarray(boot_means, dtype=float)
+
+        boot_rows.append({
+            "pair_label": pair_name,
+            "n_proposals": int(n),
+            "observed_mean_diff": mean_diff,
+            "bootstrap_ci_low": float(np.percentile(boot_means, 2.5)),
+            "bootstrap_ci_high": float(np.percentile(boot_means, 97.5)),
+            "bootstrap_p05": float(np.percentile(boot_means, 5)),
+            "bootstrap_p95": float(np.percentile(boot_means, 95)),
+            "n_bootstrap": int(n_bootstrap),
+        })
+
+    return pd.DataFrame(sign_rows), pd.DataFrame(loo_rows), pd.DataFrame(boot_rows)
+
+
+def export_additional_diagnostics(text_df: pd.DataFrame, output_dir: Path) -> Dict[str, pd.DataFrame]:
+    outputs: Dict[str, pd.DataFrame] = {}
+
+    merged_input_path = output_dir / "merged_input_with_prompts.csv"
+    if merged_input_path.exists():
+        raw_df = pd.read_csv(merged_input_path)
+    else:
+        raw_df = load_and_merge_prompt_files()
+        validate_input_columns(raw_df)
+        raw_df = add_numeric_scores(raw_df)
+
+    within_cell_sd_df = compute_within_cell_run_variability(raw_df)
+    path = output_dir / "within_cell_run_variability.csv"
+    within_cell_sd_df.to_csv(path, index=False)
+    print(f"Saved: {path}")
+    outputs["within_cell_run_variability"] = within_cell_sd_df
+
+    question_group_df = compute_question_group_effects(text_df)
+    path = output_dir / "question_group_effects_q01q04_vs_q05q06.csv"
+    question_group_df.to_csv(path, index=False)
+    print(f"Saved: {path}")
+    outputs["question_group_effects"] = question_group_df
+
+    q06_consistency_df = compute_q06_consistency(text_df)
+    path = output_dir / "q06_consistency_with_q01_q05.csv"
+    q06_consistency_df.to_csv(path, index=False)
+    print(f"Saved: {path}")
+    outputs["q06_consistency"] = q06_consistency_df
+
+    pi_interactions_df = compute_pi_interactions_q06(text_df)
+    path = output_dir / "pi_interactions_q06.csv"
+    pi_interactions_df.to_csv(path, index=False)
+    print(f"Saved: {path}")
+    outputs["pi_interactions_q06"] = pi_interactions_df
+
+    proposal_sign_df, proposal_loo_df, proposal_boot_df = compute_proposal_level_q06_robustness(
+        text_df=text_df,
+        n_bootstrap=10000,
+        seed=0,
+    )
+
+    path = output_dir / "proposal_level_q06_sign_consistency.csv"
+    proposal_sign_df.to_csv(path, index=False)
+    print(f"Saved: {path}")
+    outputs["proposal_level_q06_sign_consistency"] = proposal_sign_df
+
+    path = output_dir / "proposal_level_q06_leave_one_out.csv"
+    proposal_loo_df.to_csv(path, index=False)
+    print(f"Saved: {path}")
+    outputs["proposal_level_q06_leave_one_out"] = proposal_loo_df
+
+    path = output_dir / "proposal_level_q06_bootstrap.csv"
+    proposal_boot_df.to_csv(path, index=False)
+    print(f"Saved: {path}")
+    outputs["proposal_level_q06_bootstrap"] = proposal_boot_df
+
+    return outputs
+
 def save_latex_table(
     df: pd.DataFrame,
     path: Path,
@@ -1138,7 +1539,7 @@ def export_heterogeneity_tables(
         save_latex_table(
             pretty,
             output_dir / "model_heterogeneity_q06.tex",
-            caption="Model-level heterogeneity summary for q06 blind-referenced effects. Each row reports the pooled q06 effect for one contextual condition together with its dispersion across the eight evaluator models. \\emph{S.C.} (sing consistency) indicates how many model-specific estimates share the sign of the pooled estimate; \\emph{SD} is the standard deviation across model-specific estimates; \\emph{Min} and \\emph{Max} report the range of model-level effects; and \\emph{MADp} is the mean absolute deviation from the pooled estimate.",
+            caption="Model-level heterogeneity summary for q06 blind-referenced effects. Each row reports the pooled q06 effect for one contextual condition together with its dispersion across the eight evaluator models. \\emph{S.C.} (sign consistency) indicates how many model-specific estimates share the sign of the pooled estimate; \\emph{SD} is the standard deviation across model-specific estimates; \\emph{Min} and \\emph{Max} report the range of model-level effects; and \\emph{MADp} is the mean absolute deviation from the pooled estimate.",
             label="tab:model_heterogeneity_q06",
             col_sep_pt="5pt",
         )
@@ -1160,7 +1561,7 @@ def export_heterogeneity_tables(
         save_latex_table(
             pretty,
             output_dir / "prompt_heterogeneity_q06.tex",
-            caption="Prompt-level heterogeneity summary for q06 blind-referenced effects. Each row reports the pooled q06 effect for one contextual condition together with its dispersion across the three prompt templates. \\emph{S.C.} (sing consistency) indicates how many prompt-specific estimates share the sign of the pooled estimate; \\emph{SD} is the standard deviation across prompt-specific estimates; \\emph{Min} and \\emph{Max} report the range of prompt-level effects; and \\emph{MADp} is the mean absolute deviation from the pooled estimate.",
+            caption="Prompt-level heterogeneity summary for q06 blind-referenced effects. Each row reports the pooled q06 effect for one contextual condition together with its dispersion across the three prompt templates. \\emph{S.C.} (sign consistency) indicates how many prompt-specific estimates share the sign of the pooled estimate; \\emph{SD} is the standard deviation across prompt-specific estimates; \\emph{Min} and \\emph{Max} report the range of prompt-level effects; and \\emph{MADp} is the mean absolute deviation from the pooled estimate.",
             label="tab:prompt_heterogeneity_q06",
             col_sep_pt="5pt",
         )
@@ -1182,7 +1583,7 @@ def export_heterogeneity_tables(
         save_latex_table(
             pretty,
             output_dir / "model_pair_heterogeneity_q06.tex",
-            caption="Model-level heterogeneity summary for paired q06 contrast differences. Each row reports the pooled left-minus-right q06 difference for one paired contrast together with its dispersion across the eight evaluator models. \\emph{S.C.} (sing consistency) indicates how many model-specific paired differences share the sign of the pooled difference; \\emph{SD} is the standard deviation across model-specific paired differences; \\emph{Min} and \\emph{Max} report the range of model-level paired differences; and \\emph{MADp} is the mean absolute deviation from the pooled difference.",
+            caption="Model-level heterogeneity summary for paired q06 contrast differences. Each row reports the pooled left-minus-right q06 difference for one paired contrast together with its dispersion across the eight evaluator models. \\emph{S.C.} (sign consistency) indicates how many model-specific paired differences share the sign of the pooled difference; \\emph{SD} is the standard deviation across model-specific paired differences; \\emph{Min} and \\emph{Max} report the range of model-level paired differences; and \\emph{MADp} is the mean absolute deviation from the pooled difference.",
             label="tab:model_pair_heterogeneity_q06",
             col_sep_pt="1.8pt",
         )
@@ -1204,7 +1605,7 @@ def export_heterogeneity_tables(
         save_latex_table(
             pretty,
             output_dir / "prompt_pair_heterogeneity_q06.tex",
-            caption="Prompt-level heterogeneity summary for paired q06 contrast differences. Each row reports the pooled left-minus-right q06 difference for one paired contrast together with its dispersion across the three prompt templates. \\emph{S.C.} (sing consistency) indicates how many prompt-specific paired differences share the sign of the pooled difference; \\emph{SD} is the standard deviation across prompt-specific paired differences; \\emph{Min} and \\emph{Max} report the range of prompt-level paired differences; and \\emph{MADp} is the mean absolute deviation from the pooled difference.",
+            caption="Prompt-level heterogeneity summary for paired q06 contrast differences. Each row reports the pooled left-minus-right q06 difference for one paired contrast together with its dispersion across the three prompt templates. \\emph{S.C.} (sign consistency) indicates how many prompt-specific paired differences share the sign of the pooled difference; \\emph{SD} is the standard deviation across prompt-specific paired differences; \\emph{Min} and \\emph{Max} report the range of prompt-level paired differences; and \\emph{MADp} is the mean absolute deviation from the pooled difference.",
             label="tab:prompt_pair_heterogeneity_q06",
             col_sep_pt="1.8pt",
         )
@@ -1995,6 +2396,11 @@ def main() -> None:
         force=args.force,
     )
 
+    additional_diagnostics = export_additional_diagnostics(
+        text_df=text_df,
+        output_dir=output_dir,
+    )
+
     make_main_question_plot(
         pooled_question_df=pooled_question_df,
         text_df=text_df,
@@ -2072,6 +2478,8 @@ def main() -> None:
     print(f"Pooled pair-difference rows: {max(len(pooled_pair_df_model), len(pooled_pair_df_prompt)):,}")
     print(f"Mixed-effects q06 rows: {len(mixed_effects_q06_df):,}")
     print(f"Permutation rows: {len(permutation_df):,}")
+    for name, df in additional_diagnostics.items():
+        print(f"Additional diagnostic {name} rows: {len(df):,}")
 
 
 if __name__ == "__main__":

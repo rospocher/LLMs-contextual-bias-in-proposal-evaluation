@@ -1,0 +1,5 @@
+pair_label,n_proposals,mean_diff,n_negative,n_positive,n_zero,pct_negative
+Low-tier (inst.) - Top-tier (inst.),40,-0.042994791666666664,38,2,0,95.0
+Lower (profile) - Higher (profile),40,-0.168984375,40,0,0,100.0
+Male (name) - Female (name),40,-0.017734375,33,7,0,82.5
+Yes (AI) - No (AI),40,-0.06208333333333334,36,4,0,90.0
