@@ -3,6 +3,19 @@
 Online materials for the manuscript *Contextual Cue Sensitivity in LLM-Based Proposal Scoring: A Controlled ERC-Style Study*.
 This repository contains the data, scripts, and analysis outputs supporting the study.
 
+This work has been conducted within the [Digital Arena for Inclusive Humanities](https://daih.eu) of the University of Verona, Italy.
+
+Full reference to the paper:
+```bibtex
+@inproceedings{2026aacl,
+	author = {Marco Rospocher},
+	booktitle = {Proceedings of the The 5th Asia-Pacific Chapter of the Association for Computational Linguistics & the 15th International Joint Conference on Natural Language Processing (AACL-IJCNLP 2026)},
+	title = {Contextual Cue Sensitivity in LLM Scoring of Project Proposals: A Controlled ERC-Style Study},
+	year = {To appear},
+}
+```
+
+
 ## Repository structure
 
 ```text
